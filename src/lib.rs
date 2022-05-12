@@ -158,7 +158,7 @@ pub mod build {
         let git_sha = {
             let cmd = Command::new("git")
                 .arg("describe")
-                .args(["--abbrev=40", "--always", "--exclude='*'"])
+                .args(["--abbrev=40", "--always", "--exclude=*"])
                 .output()
                 .unwrap();
             assert!(cmd.status.success());
