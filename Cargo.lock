@@ -227,6 +227,7 @@ dependencies = [
 name = "contract-version"
 version = "0.0.1"
 dependencies = [
+ "indexmap",
  "near-sdk",
  "rustc_version",
 ]
@@ -296,6 +297,12 @@ checksum = "d3dd60d1080a57a05ab032377049e0591415d2b31afd7028356dbf3cc6dcb066"
 dependencies = [
  "generic-array",
 ]
+
+[[package]]
+name = "dyn-clone"
+version = "1.0.5"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "21e50f3adc76d6a43f5ed73b698a87d0760ca74617f60f7c3b879003536fdd28"
 
 [[package]]
 name = "easy-ext"
@@ -434,12 +441,13 @@ dependencies = [
 
 [[package]]
 name = "indexmap"
-version = "1.8.0"
+version = "1.8.2"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "282a6247722caba404c065016bbfa522806e51714c34f5dfc3e4a3a46fcb4223"
+checksum = "e6012d540c5baa3589337a98ce73408de9b5a25ec9fc2c6fd6be8f0d39e0ca5a"
 dependencies = [
  "autocfg",
  "hashbrown",
+ "serde",
 ]
 
 [[package]]
@@ -465,6 +473,15 @@ name = "libc"
 version = "0.2.118"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "06e509672465a0504304aa87f9f176f2b2b716ed8fb105ebe5c02dc6dce96a94"
+
+[[package]]
+name = "log"
+version = "0.4.17"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "abb12e687cfb44aa40f41fc3978ef76448f9b6038cad6aef4259d3c095a2382e"
+dependencies = [
+ "cfg-if 1.0.0",
+]
 
 [[package]]
 name = "matches"
@@ -600,17 +617,19 @@ dependencies = [
 [[package]]
 name = "near-sdk"
 version = "4.0.0-pre.8"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "e30889e853c3508ed83b0f507e3c947e3591810d44221b3899c7b407c484a2b2"
+source = "git+ssh://git@github.com/Seatlab-dev/Forked-Near-Rust-Sdk.git?rev=fed38a5#fed38a52bc3b33d0502c64173991dbb64d44b861"
 dependencies = [
  "base64 0.13.0",
  "borsh",
  "bs58",
+ "indexmap",
  "near-primitives-core",
  "near-sdk-macros",
  "near-sys",
  "near-vm-logic",
+ "okapi",
  "once_cell",
+ "schemars",
  "serde",
  "serde_json",
  "wee_alloc",
@@ -619,8 +638,7 @@ dependencies = [
 [[package]]
 name = "near-sdk-macros"
 version = "4.0.0-pre.8"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "2e104d6e4f4a85526c7b027c998f16cc5c27c30b691a3aed4cad57dd6414b90e"
+source = "git+ssh://git@github.com/Seatlab-dev/Forked-Near-Rust-Sdk.git?rev=fed38a5#fed38a52bc3b33d0502c64173991dbb64d44b861"
 dependencies = [
  "Inflector",
  "proc-macro2",
@@ -631,8 +649,7 @@ dependencies = [
 [[package]]
 name = "near-sys"
 version = "0.1.0"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "f6a7aa3f46fac44416d8a93d14f30a562c4d730a1c6bf14bffafab5f475c244a"
+source = "git+ssh://git@github.com/Seatlab-dev/Forked-Near-Rust-Sdk.git?rev=fed38a5#fed38a52bc3b33d0502c64173991dbb64d44b861"
 
 [[package]]
 name = "near-vm-errors"
@@ -709,6 +726,18 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "9a64b1ec5cda2586e284722486d802acf1f7dbdc623e2bfc57e65ca1cd099290"
 dependencies = [
  "autocfg",
+]
+
+[[package]]
+name = "okapi"
+version = "0.7.0-rc.1"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "ce66b6366e049880a35c378123fddb630b1a1a3c37fa1ca70caaf4a09f6e2893"
+dependencies = [
+ "log",
+ "schemars",
+ "serde",
+ "serde_json",
 ]
 
 [[package]]
@@ -957,6 +986,31 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "73b4b750c782965c211b42f022f59af1fbceabdd026623714f104152f1ec149f"
 
 [[package]]
+name = "schemars"
+version = "0.8.10"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "1847b767a3d62d95cbf3d8a9f0e421cf57a0d8aa4f411d4b16525afb0284d4ed"
+dependencies = [
+ "dyn-clone",
+ "indexmap",
+ "schemars_derive",
+ "serde",
+ "serde_json",
+]
+
+[[package]]
+name = "schemars_derive"
+version = "0.8.10"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "af4d7e1b012cb3d9129567661a63755ea4b8a7386d339dc945ae187e403c6743"
+dependencies = [
+ "proc-macro2",
+ "quote",
+ "serde_derive_internals",
+ "syn",
+]
+
+[[package]]
 name = "semver"
 version = "1.0.5"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -976,6 +1030,17 @@ name = "serde_derive"
 version = "1.0.136"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "08597e7152fcd306f41838ed3e37be9eaeed2b61c42e2117266a554fab4662f9"
+dependencies = [
+ "proc-macro2",
+ "quote",
+ "syn",
+]
+
+[[package]]
+name = "serde_derive_internals"
+version = "0.26.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "85bf8229e7920a9f636479437026331ce11aa132b4dde37d121944a44d6e5f3c"
 dependencies = [
  "proc-macro2",
  "quote",

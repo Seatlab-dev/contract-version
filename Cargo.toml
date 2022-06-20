@@ -10,3 +10,8 @@ resolver = "2"
 [dependencies]
 near-sdk = {version = "4.0.0-pre.8", features = ["unstable"]}
 rustc_version = "0.4.0"
+indexmap = "1.8.2"
+
+[patch.crates-io.near-sdk]
+git = "ssh://git@github.com/Seatlab-dev/Forked-Near-Rust-Sdk.git"
+rev = "fed38a5"

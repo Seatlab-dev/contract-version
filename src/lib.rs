@@ -1,26 +1,40 @@
 //! Based on https://github.com/rustyhorde/vergen/
 //! and on https://github.com/fusion-engineering/rust-git-version.
 
+use near_sdk::schemars::JsonSchema;
+
 pub trait IVersion {
     fn version(&self) -> Version;
 }
 
 /// Information gathered right before compilation.
-#[derive(near_sdk::serde::Serialize, near_sdk::serde::Deserialize, Debug, PartialEq)]
+#[derive(
+    near_sdk::serde::Serialize, near_sdk::serde::Deserialize, Debug, PartialEq, JsonSchema,
+)]
 #[serde(crate = "near_sdk::serde")]
+#[schemars(crate = "near_sdk::schemars")]
+#[schemars(example = "version_example")]
 pub struct Version {
+    #[schemars(description = "The project's name.")]
     /// The project's name.  
     /// eg. `my-project`.
     pub name: String,
+
+    #[schemars(description = "The project's semver.")]
     /// The project's semver.  
     /// eg. `0.1.0`.
     pub semver: String,
+
+    #[schemars(description = "The git 40-byte commit sha.")]
     /// The git 40-byte commit sha.  
     /// eg. `2beb5ec70ee2c0490cd0f4964544c998e6badbcc`.
     pub git_sha: String,
+
+    #[schemars(description = "The commit datetime.")]
     /// The commit datetime.  
     /// eg. `2022-02-11 14:26:08 -0300`.
     pub git_datetime: String,
+
     /// Whether there are modified or untracked files.  
     ///
     /// ie. A contract that was trying to be reproducible
@@ -28,19 +42,46 @@ pub struct Version {
     /// otherwise other un-commited or un-added files could
     /// change the build contents.
     pub git_dirty: bool,
+
+    #[schemars(
+        description = "Active cargo features, comma-separated. If none were active, `default` is shown."
+    )]
     /// Active cargo features, comma-separated.  
     /// If none were active, `default` is shown.  
     /// eg. `default`.
     pub cargo_features: String,
+
+    #[schemars(description = "The build profile.")]
     /// The build profile.  
     /// eg. `release`.
     pub cargo_profile: String,
+
+    #[schemars(description = "")]
     /// eg. `1.56.1`.
     pub rustc_semver: String,
+
+    #[schemars(description = "")]
     /// eg. `13.0`.
     pub rustc_llvm: String,
+
+    #[schemars(description = "")]
     /// eg. `59eed8a2aac0230a8b53e89d4e99d55912ba6b35`.
     pub rustc_sha: String,
+}
+
+fn version_example() -> Version {
+    Version {
+        name: "my-project".into(),
+        semver: "0.1.0".into(),
+        git_sha: "2beb5ec70ee2c0490cd0f4964544c998e6badbcc".into(),
+        git_datetime: "2022-02-11 14:26:08 -0300".into(),
+        git_dirty: false,
+        cargo_features: "default".into(),
+        cargo_profile: "release".into(),
+        rustc_semver: "1.56.1".into(),
+        rustc_llvm: "13.0".into(),
+        rustc_sha: "59eed8a2aac0230a8b53e89d4e99d55912ba6b35".into(),
+    }
 }
 
 impl Version {
