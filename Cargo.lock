@@ -617,7 +617,7 @@ dependencies = [
 [[package]]
 name = "near-sdk"
 version = "4.0.0-pre.8"
-source = "git+https://github.com/Seatlab-dev/Forked-Near-Rust-Sdk.git?rev=fed38a5#fed38a52bc3b33d0502c64173991dbb64d44b861"
+source = "git+https://github.com/Seatlab-dev/Forked-Near-Rust-Sdk.git?rev=8818c4f#8818c4f0474a92653c2e554cf4817f9b618c0fe6"
 dependencies = [
  "base64 0.13.0",
  "borsh",
@@ -638,9 +638,10 @@ dependencies = [
 [[package]]
 name = "near-sdk-macros"
 version = "4.0.0-pre.8"
-source = "git+https://github.com/Seatlab-dev/Forked-Near-Rust-Sdk.git?rev=fed38a5#fed38a52bc3b33d0502c64173991dbb64d44b861"
+source = "git+https://github.com/Seatlab-dev/Forked-Near-Rust-Sdk.git?rev=8818c4f#8818c4f0474a92653c2e554cf4817f9b618c0fe6"
 dependencies = [
  "Inflector",
+ "base64 0.13.0",
  "proc-macro2",
  "quote",
  "syn",
@@ -649,7 +650,7 @@ dependencies = [
 [[package]]
 name = "near-sys"
 version = "0.1.0"
-source = "git+https://github.com/Seatlab-dev/Forked-Near-Rust-Sdk.git?rev=fed38a5#fed38a52bc3b33d0502c64173991dbb64d44b861"
+source = "git+https://github.com/Seatlab-dev/Forked-Near-Rust-Sdk.git?rev=8818c4f#8818c4f0474a92653c2e554cf4817f9b618c0fe6"
 
 [[package]]
 name = "near-vm-errors"
@@ -988,8 +989,7 @@ checksum = "73b4b750c782965c211b42f022f59af1fbceabdd026623714f104152f1ec149f"
 [[package]]
 name = "schemars"
 version = "0.8.10"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "1847b767a3d62d95cbf3d8a9f0e421cf57a0d8aa4f411d4b16525afb0284d4ed"
+source = "git+https://github.com/Seatlab-dev/schemars.git?rev=df322feb675a194b62ddd449deb6c731417052b6#df322feb675a194b62ddd449deb6c731417052b6"
 dependencies = [
  "dyn-clone",
  "indexmap",
@@ -1001,8 +1001,7 @@ dependencies = [
 [[package]]
 name = "schemars_derive"
 version = "0.8.10"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "af4d7e1b012cb3d9129567661a63755ea4b8a7386d339dc945ae187e403c6743"
+source = "git+https://github.com/Seatlab-dev/schemars.git?rev=df322feb675a194b62ddd449deb6c731417052b6#df322feb675a194b62ddd449deb6c731417052b6"
 dependencies = [
  "proc-macro2",
  "quote",
