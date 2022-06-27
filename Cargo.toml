@@ -14,8 +14,8 @@ indexmap = "1.8.2"
 
 [patch.crates-io.near-sdk]
 git = "https://github.com/Seatlab-dev/Forked-Near-Rust-Sdk.git"
-rev = "0544cca"
+rev = "a511581"
 
 [patch.crates-io.schemars]
 git = "https://github.com/Seatlab-dev/schemars.git"
-rev = "df322feb675a194b62ddd449deb6c731417052b6"
+rev = "57ffb49"
